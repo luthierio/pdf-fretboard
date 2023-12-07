@@ -8,11 +8,13 @@ It is recommended to use a virtual environment.
 . venv/bin/activate
 virtualenv venv
 ```
-Then, install the required libraries and run.
+Then, install the required libraries:
 ```
 pip install -r requirements.txt
 ```
+Tu use, you can try one by one
 ```
 python freatboard.py [<scale_length> <num_frets>]
 ```
+or use de createAll.py, which will build all fretboards.pdf
 
