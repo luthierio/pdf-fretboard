@@ -21,9 +21,9 @@ def mm_to_points(mm):
     # Conversion de millimètres à points (1 point ≈ 0.352778 mm)
     return mm / 0.352778
 
-def draw_fretboard(pdf_file, num_frets, scale_length, line_width, font_size):
+def draw_fretboard(pdf_file, num_frets, scale_length, nut_width, line_width, font_size):
     # Dimensions du PDF en millimètres
-    pdf_width_mm = scale_length + 5
+    pdf_width_mm = scale_length + nut_width
     pdf_height_mm = 80
 
     # Conversion des dimensions en points
@@ -34,7 +34,7 @@ def draw_fretboard(pdf_file, num_frets, scale_length, line_width, font_size):
     c = canvas.Canvas(pdf_file, pagesize=(pdf_width, pdf_height))
 
     # Position initiale du diapason
-    nut_position_mm = 5
+    nut_position_mm = nut_width
     nut_position = mm_to_points(nut_position_mm)
 
     # Définir la taille de la ligne
@@ -47,9 +47,9 @@ def draw_fretboard(pdf_file, num_frets, scale_length, line_width, font_size):
     c.line(nut_position, pdf_height, nut_position, 0)
 
     # Dessiner les frettes, leurs numéros et les distances
-    for fret in range(1, num_frets + 1):
-        fret_position_mm = calculate_fret_position(scale_length, fret)
-        fret_position = mm_to_points(fret_position_mm)
+    for fret in range(0, num_frets + 1):
+        fret_position_mm = calculate_fret_position(scale_length, fret) 
+        fret_position = mm_to_points(fret_position_mm+nut_position_mm)
         distance_to_nut = fret_position
         c.line(fret_position, pdf_height, fret_position, 0)
 
@@ -90,9 +90,10 @@ if __name__ == "__main__":
     if not os.path.exists("dist"):           
         os.makedirs("dist") 
         
+    nut_width = 10
     line_width = 0.5
     font_size = 6
-    pdf_filename = f"dist/fretboard_{scale_length}mm_{num_frets}.pdf"
+    pdf_filename = f"dist/{scale_length}mm_{num_frets}.pdf"
     
-    draw_fretboard(pdf_filename, num_frets, scale_length, line_width, font_size)
+    draw_fretboard(pdf_filename, num_frets, scale_length, nut_width, line_width, font_size)
 
