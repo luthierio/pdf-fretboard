@@ -21,10 +21,10 @@ def mm_to_points(mm):
     # Conversion de millimètres à points (1 point ≈ 0.352778 mm)
     return mm / 0.352778
 
-def draw_fretboard(pdf_file, num_frets, scale_length, nut_width, line_width, font_size):
+def draw_fretboard(pdf_file, num_frets, scale_length, width, nut_width, line_width, font_size):
     # Dimensions du PDF en millimètres
     pdf_width_mm = scale_length + nut_width
-    pdf_height_mm = 80
+    pdf_height_mm = width
 
     # Conversion des dimensions en points
     pdf_width = mm_to_points(pdf_width_mm)
@@ -32,7 +32,8 @@ def draw_fretboard(pdf_file, num_frets, scale_length, nut_width, line_width, fon
 
     # Création d'un objet Canvas pour dessiner sur le PDF
     c = canvas.Canvas(pdf_file, pagesize=(pdf_width, pdf_height))
-
+    c.setAuthor("Simon Daron @ La Fabrique du Silence")
+    c.setTitle("Fretboard: "+str(scale_length)+"mm")
     # Position initiale du diapason
     nut_position_mm = nut_width
     nut_position = mm_to_points(nut_position_mm)
@@ -90,10 +91,11 @@ if __name__ == "__main__":
     if not os.path.exists("dist"):           
         os.makedirs("dist") 
         
+    width = 80
     nut_width = 10
     line_width = 0.5
-    font_size = 6
+    font_size = 5
     pdf_filename = f"dist/{scale_length}mm_{num_frets}.pdf"
     
-    draw_fretboard(pdf_filename, num_frets, scale_length, nut_width, line_width, font_size)
+    draw_fretboard(pdf_filename, num_frets, scale_length, width, nut_width, line_width, font_size)
 
