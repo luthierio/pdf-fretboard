@@ -1,13 +1,17 @@
 import subprocess
+import sys
 
-# Spécifiez la commande que vous souhaitez exécuter
 commande = "python fretboard.py"
 
-# Spécifiez le nombre d'itérations
-nombre_iterations = 10  # Vous pouvez ajuster le nombre selon vos besoins
+start = 600
+end   = 700
+
+if len(sys.argv) == 3:
+  start = int(sys.argv[1])
+  end = int(sys.argv[2])
 
 # Boucle à travers la plage de 300 à 800
-for parametre in range(300, 801):
+for parametre in range(start, end):
     # Construit la commande complète en ajoutant le paramètre
     commande_complete = f"{commande} {parametre}"
 
@@ -20,7 +24,5 @@ for parametre in range(300, 801):
     except Exception as e:
         print(f"Une erreur s'est produite : {e}")
 
-    # Pause facultative entre les itérations
-    # Vous pouvez ajuster cette valeur en fonction de vos besoins
     # time.sleep(1)
 
