@@ -16,5 +16,8 @@ Tu use, you can try one by one
 ```
 python freatboard.py [<scale_length> <num_frets>]
 ```
-or use de createAll.py, which will build all fretboards.pdf
+or use de createRange.py, which will build all fretboards.pdf in a range:
+```
+python createRange.py [<start> <end>]
+```
 
