@@ -11,7 +11,7 @@ if len(sys.argv) == 3:
   end = int(sys.argv[2])
 
 # Boucle à travers la plage de 300 à 800
-for parametre in range(start, end):
+for parametre in range(start, end+1):
     # Construit la commande complète en ajoutant le paramètre
     commande_complete = f"{commande} {parametre}"
 

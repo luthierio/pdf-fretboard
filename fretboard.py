@@ -68,6 +68,7 @@ def draw_fretboard(pdf_file, num_frets, scale_length, width, nut_width, line_wid
 
     # Enregistrez le fichier PDF
     c.save()
+    print(f"Diapason imprimé: {scale_length}")
 
 # Script principal
 if __name__ == "__main__":
